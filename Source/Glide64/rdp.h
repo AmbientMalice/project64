@@ -330,6 +330,7 @@ typedef struct {
   #define  hack_Tonic       (1<<26)  //tonic trouble
   #define  hack_Yoshi       (1<<27)  //Yoshi Story
   #define  hack_Zelda       (1<<28)  //zeldas hacks
+  #define  hack_OOT         (1<<30) //OoT subscreen hack via Gonetz. Kept numbering in place despite no Blast Corps hack. (Yet.)
   wxUint32 hacks;
 
   //wrapper settings
