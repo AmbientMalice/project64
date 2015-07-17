@@ -236,7 +236,7 @@ void CLanguage::LoadDefaultStrings (void)
 	DEF_STR(RB_USE,              L"Use ROM browser");
 	DEF_STR(RB_DIR_RECURSION,    L"Use directory recursion");
 	DEF_STR(RB_AVALIABLE_FIELDS, L"Available fields:");
-	DEF_STR(RB_SHOW_FIELDS,      L"Fields order:");
+	DEF_STR(RB_SHOW_FIELDS,      L"Order of fields:");
 	DEF_STR(RB_ADD,              L"Add ->");
 	DEF_STR(RB_REMOVE,           L"<- Remove");
 	DEF_STR(RB_UP,               L"Up");
