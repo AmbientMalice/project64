@@ -437,8 +437,6 @@ void ReadSpecialSettings (const char * name)
     settings.hacks |= hack_Yoshi;
   else if (strstr(name, (const char *)"F-Zero X") || strstr(name, (const char *)"F-ZERO X"))
     settings.hacks |= hack_Fzero;
-  else if (strstr(name, (const char *)"THE LEGEND OF ZELDA"))
-    settings.hacks |= hack_OOT;
   else if (strstr(name, (const char *)"PAPER MARIO") || strstr(name, (const char *)"MARIO STORY"))
     settings.hacks |= hack_PMario;
   else if (strstr(name, (const char *)"TOP GEAR RALLY 2"))
