@@ -71,11 +71,11 @@ typedef std::vector<ROMBROWSER_FIELDS>   ROMBROWSER_FIELDS_LIST;
 typedef std::vector<int>                 FIELD_TYPE_LIST;
 
 class CRomBrowser;
-typedef struct {
+struct SORT_FIELD {
 	CRomBrowser * _this;
 	int           Key;
 	bool          KeyAscend;
-} SORT_FIELD;
+};
 
 class C7zip;
 class CRomBrowser 
@@ -100,7 +100,7 @@ class CRomBrowser
 		NoOfSortKeys = 3
 	};
 
-	typedef struct {
+	struct ROM_INFO {
 		char     szFullFileName[300];
 		FILE_FORMAT FileFormat;
 		char     Status[60];
@@ -126,7 +126,7 @@ class CRomBrowser
 		DWORD    CRC2;
 		int      CicChip;
 		char     ForceFeedback[15];
-	} ROM_INFO;
+	};
 
 	typedef std::vector<ROM_INFO>   ROMINFO_LIST;
 
@@ -163,7 +163,7 @@ class CRomBrowser
 	static int   GetCicChipID     ( BYTE * RomData );
 	bool  LoadDataFromRomFile     ( char * FileName, BYTE * Data,int DataLen, int * RomSize, FILE_FORMAT & FileFormat );
 	void  LoadRomList             ( void );
-	void  MenuSetText             ( HMENU hMenu, int MenuPos, const wchar_t * Title, char * ShotCut);
+	void  MenuSetText             ( HMENU hMenu, int MenuPos, const wchar_t * Title, char * ShortCut);
 	void  SaveRomList             ( strlist & FileList );
 	void  RomList_ColoumnSortList ( DWORD pnmh );
 	void  RomList_GetDispInfo     ( DWORD pnmh );

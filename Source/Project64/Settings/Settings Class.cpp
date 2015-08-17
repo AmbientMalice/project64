@@ -168,6 +168,8 @@ void CSettings::AddHowToHandleSetting ()
 	AddHandler(Rdb_ViRefreshRate,       new CSettingTypeRomDatabase("ViRefresh",1500));
 	AddHandler(Rdb_AiCountPerBytes,     new CSettingTypeRomDatabase("AiCountPerBytes",400));
 	AddHandler(Rdb_AudioResetOnLoad,    new CSettingTypeRDBYesNo("AudioResetOnLoad", false));
+	AddHandler(Rdb_AllowROMWrites,      new CSettingTypeRDBYesNo("AllowROMWrites", false));
+	AddHandler(Rdb_CRC_Recalc,          new CSettingTypeRDBYesNo("CRC-Recalc", false));
 	
 	AddHandler(Game_IniKey,             new CSettingTypeTempString(""));
 	AddHandler(Game_GameName,           new CSettingTypeTempString(""));
@@ -212,6 +214,8 @@ void CSettings::AddHowToHandleSetting ()
 	AddHandler(Game_ViRefreshRate,      new CSettingTypeGame("ViRefresh",Rdb_ViRefreshRate));
 	AddHandler(Game_AiCountPerBytes,    new CSettingTypeGame("AiCountPerBytes",Rdb_AiCountPerBytes));
 	AddHandler(Game_AudioResetOnLoad,   new CSettingTypeGame("AudioResetOnLoad", Rdb_AudioResetOnLoad));
+	AddHandler(Game_AllowROMWrites,     new CSettingTypeGame("AllowROMWrites", Rdb_AllowROMWrites));
+	AddHandler(Game_CRC_Recalc,         new CSettingTypeGame("CRC-Recalc", Rdb_CRC_Recalc));
 
 	//User Interface
 	AddHandler(UserInterface_BasicMode,        new CSettingTypeApplication("","Basic Mode",          (DWORD)true));
@@ -246,11 +250,18 @@ void CSettings::AddHowToHandleSetting ()
 	AddHandler(Directory_GameUseSelected,      new CSettingTypeApplication("Directory","Game - Use Selected",false));
 
 	AddHandler(Directory_Plugin,               new CSettingTypeSelectedDirectory("Dir:Plugin",Directory_PluginInitial,Directory_PluginSelected,Directory_PluginUseSelected));
-	AddHandler(Directory_PluginInitial,        new CSettingTypeRelativePath("Plugin",""));
+#ifdef _M_IX86
+	AddHandler(Directory_PluginInitial,        new CSettingTypeRelativePath("Plugin", ""));
 	AddHandler(Directory_PluginSelected,       new CSettingTypeApplicationPath("Directory","Plugin",Directory_PluginInitial));
 	AddHandler(Directory_PluginUseSelected,    new CSettingTypeApplication("Directory","Plugin - Use Selected",false));
 	AddHandler(Directory_PluginSync,           new CSettingTypeRelativePath("SyncPlugin",""));
-	
+#else
+	AddHandler(Directory_PluginInitial, new CSettingTypeRelativePath("Plugin64", ""));
+	AddHandler(Directory_PluginSelected, new CSettingTypeApplicationPath("Directory", "Plugin64", Directory_PluginInitial));
+	AddHandler(Directory_PluginUseSelected, new CSettingTypeApplication("Directory", "Plugin - Use Selected", false));
+	AddHandler(Directory_PluginSync, new CSettingTypeRelativePath("SyncPlugin64", ""));
+#endif
+
 	AddHandler(Directory_SnapShot,             new CSettingTypeSelectedDirectory("Dir:Snapshot",Directory_SnapShotInitial,Directory_SnapShotSelected,Directory_SnapShotUseSelected));
 	AddHandler(Directory_SnapShotInitial,      new CSettingTypeRelativePath("Screenshots",""));
 	AddHandler(Directory_SnapShotSelected,     new CSettingTypeApplicationPath("Directory","Snap Shot",Directory_SnapShotInitial));
@@ -510,13 +521,13 @@ void CSettings::RegisterSetting ( CSettings * _this, SettingID ID, SettingID Def
 	}
 }
 
-bool CSettings::Initilize( const char * AppName )
+bool CSettings::Initialize( const char * AppName )
 {
 	AddHowToHandleSetting();
-	CSettingTypeApplication::Initilize(AppName);
-	CSettingTypeRomDatabase::Initilize();
-	CSettingTypeGame::Initilize();
-	CSettingTypeCheats::Initilize();
+	CSettingTypeApplication::Initialize(AppName);
+	CSettingTypeRomDatabase::Initialize();
+	CSettingTypeGame::Initialize();
+	CSettingTypeCheats::Initialize();
 
 	g_Settings->SaveString(Setting_ApplicationName,AppName);
 	return true;
@@ -1084,7 +1095,7 @@ void CSettings::UnregisterChangeCB(SettingID Type,void * Data, SettingChangedFun
 					if (item->Next)
 					{
 						SettingID Type = Callback->first;
-						_SETTING_CHANGED_CB * Next = item->Next;
+						SETTING_CHANGED_CB * Next = item->Next;
 						m_Callback.erase(Callback);
 						m_Callback.insert(SETTING_CALLBACK::value_type(Type,Next));
 					} else {

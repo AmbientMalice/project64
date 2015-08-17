@@ -96,6 +96,8 @@ enum SettingID {
 	Rdb_ViRefreshRate,
 	Rdb_AiCountPerBytes,
 	Rdb_AudioResetOnLoad,
+	Rdb_AllowROMWrites,
+	Rdb_CRC_Recalc,
 
 	//Individual Game Settings
 	Game_IniKey,
@@ -141,6 +143,8 @@ enum SettingID {
 	Game_ViRefreshRate,
 	Game_AiCountPerBytes,
 	Game_AudioResetOnLoad,
+	Game_AllowROMWrites,
+	Game_CRC_Recalc,
 
 	// General Game running info
 	GameRunning_LoadingInProgress,
