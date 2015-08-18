@@ -1,6 +1,8 @@
 #define BaseDir ExtractFilePath(ExtractFilePath(ExtractFilePath(SourcePath)))
 #define AppVersion GetFileVersion(BaseDir + "\Bin\" + Configuration + "\Project64.exe")
 
+#include BaseDir+"\Source\Installer\binno\binno.iss"
+
 [Setup]
 AppId={{BEB5FB69-4080-466F-96C4-F15DF271718B}
 AppName=Project 64
