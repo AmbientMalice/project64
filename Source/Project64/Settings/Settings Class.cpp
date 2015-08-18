@@ -218,8 +218,8 @@ void CSettings::AddHowToHandleSetting ()
 	AddHandler(Game_CRC_Recalc,         new CSettingTypeGame("CRC-Recalc", Rdb_CRC_Recalc));
 
 	//User Interface
-	AddHandler(UserInterface_BasicMode,        new CSettingTypeApplication("","Basic Mode",          (DWORD)true));
-	AddHandler(UserInterface_ShowCPUPer,       new CSettingTypeApplication("","Display CPU Usage",   (DWORD)false));
+	AddHandler(UserInterface_BasicMode,        new CSettingTypeApplication("","Basic Mode",          (DWORD)false));
+	AddHandler(UserInterface_ShowCPUPer,       new CSettingTypeApplication("","Display CPU Usage",   (DWORD)true));
 	AddHandler(UserInterface_DisplayFrameRate, new CSettingTypeApplication("","Display Frame Rate",  (DWORD)true));
 	AddHandler(UserInterface_InFullScreen,     new CSettingTypeTempBool(false));
 	AddHandler(UserInterface_FrameDisplayType, new CSettingTypeApplication("","Frame Rate Display Type", (DWORD)FR_VIs));
