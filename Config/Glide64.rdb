@@ -1,7 +1,7 @@
 ﻿// ============ Glide RDB for PJ64 v2.2  ====================================
 // UCODE:
 // These are ucode crcs used in the uCode detector.
-// If a crc is not found here, the plugin will ask you
+// If a crc is not found here, the plugin will ask youd
 // to add it. All these values are in hexadecimal.
 //
 // uCodes:
@@ -843,6 +843,7 @@ Internal Name=DONKEY KONG 64
 depth_bias=64
 depthmode=1
 fb_clear=1
+fb_render=1
 lodmode=1
 
 [053C89A7-A5064302-C:4A]
@@ -851,6 +852,7 @@ Internal Name=DONKEY KONG 64
 depth_bias=64
 depthmode=1
 fb_clear=1
+fb_render=1
 lodmode=1
 
 [EC58EABF-AD7C7169-C:45]
@@ -859,6 +861,7 @@ Internal Name=DONKEY KONG 64
 depth_bias=64
 depthmode=1
 fb_clear=1
+fb_render=1
 lodmode=1
 
 [0DD4ABAB-B5A2A91E-C:45]
@@ -866,6 +869,7 @@ Good Name=Donkey Kong 64 (U) (Kiosk Demo)
 Internal Name=D K DISPLAY
 depthmode=1
 fb_clear=1
+fb_render=1
 
 [2C739EAC-9EF77726-C:50]
 Good Name=Doom 64 (E)
