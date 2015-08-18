@@ -168,33 +168,24 @@ RDRAM Size=8
 Good Name=1080 Snowboarding (E) (M4)
 Internal Name=1080 SNOWBOARDING
 Status=Compatible
-Plugin Note=[video] framebuffer:screen (see GameFAQ)
-Culling=1
-Emulate Clear=1
 
 [1FBAF161-2C1C54F1-C:41]
 Good Name=1080 Snowboarding (JU) (M2)
 Internal Name=1080 SNOWBOARDING
 Status=Compatible
-Culling=1
-Emulate Clear=1
 SMM-Cache=0
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [ABA51D09-C668BAD9-C:58]
 Good Name=40 Winks (E) (M3) (Beta)
 Internal Name=40 WINKS
 Status=Compatible
-Plugin Note=[video] errors:menus, actors during cutscenes black; use Force Alpha Blending
 RDRAM Size=8
 
 [B98BA456-5B2B76AF-C:4A]
 Good Name=64 de Hakken!! Tamagotchi - Minna de Tamagotchi World (J)
 Internal Name=ÐÝÅÃÞÀÏºÞ¯ÁÜ°ÙÄÞ
-Status=Issues (plugin)
-Plugin Note=[video] use Glide64; errors:various
 Counter Factor=1
 Save Type=FlashRam
 
@@ -4225,10 +4216,10 @@ Status=Compatible
 Good Name=Perfect Dark (E) (M5)
 Internal Name=Perfect Dark
 Status=Compatible
-Core Note=high system requirement; timing (see GameFAQ)
-Plugin Note=[video] errors:various (see GameFAQ)
+Core Note=CF=1 causes timing quirks and higher requirements.
+Plugin Note=[video] Glide64 texture bugs.
 32bit=No
-Clear Frame=2
+Counter Factor=1
 RDRAM Size=8
 SMM-Cache=0
 SMM-FUNC=0
@@ -4241,10 +4232,9 @@ Save Type=16kbit Eeprom
 Good Name=Perfect Dark (J)
 Internal Name=PERFECT DARK
 Status=Compatible
-Core Note=high system requirement; timing (see GameFAQ)
-Plugin Note=[video] errors:various (see GameFAQ)
+Core Note=CF1 causes timing quirks and higher requirements.
+Plugin Note=[video] Glide64 texture bugs.
 32bit=No
-Clear Frame=2
 RDRAM Size=8
 SMM-Cache=0
 SMM-FUNC=0
@@ -4257,10 +4247,9 @@ Save Type=16kbit Eeprom
 Good Name=Perfect Dark (U) (V1.0)
 Internal Name=Perfect Dark
 Status=Compatible
-Core Note=high system requirement; timing (see GameFAQ)
-Plugin Note=[video] errors:various (see GameFAQ)
+Core Note=CF=1 causes timing quirks and higher requirements.
+Plugin Note=[video] Glide64 texture bugs.
 32bit=No
-Clear Frame=2
 Culling=1
 FuncFind=2
 RDRAM Size=8
@@ -4275,7 +4264,7 @@ Good Name=Perfect Dark (U) (V1.1)
 Internal Name=Perfect Dark
 Status=Compatible
 Core Note=high system requirement; timing (see GameFAQ)
-Plugin Note=[video] errors:various (see GameFAQ)
+Plugin Note=[video] Glide64 texture bugs.
 32bit=No
 Clear Frame=2
 Culling=1
@@ -4357,6 +4346,7 @@ Status=Compatible
 Good Name=Pokemon Snap (A)
 Internal Name=POKEMON SNAP
 Status=Compatible
+Plugin Note=Needs accurate depth buffer or something.
 Cheat0=D1382D1C 802C,80382D0F 0000 //Pass 1st Level and Controller Fix
 Cheat1=D11E3C44 2881,811E3C44 2001,D11E3C46 0098,811E3C46 0001 //Make Picture selectable
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
@@ -4366,6 +4356,7 @@ CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
 Good Name=Pokemon Snap (E)
 Internal Name=POKEMON SNAP
 Status=Compatible
+Plugin Note=Needs accurate depth buffer or something.
 Cheat0=D1381BFC 802C,80381BEF 0000 //Pass 1st Level and Controller Fix
 Cheat1=D11E3824 2881,811E3824 2001,D11E3826 0098,811E3826 0001 //Make Picture selectable
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
@@ -4375,6 +4366,7 @@ CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
 Good Name=Pokemon Snap (F)
 Internal Name=POKEMON SNAP
 Status=Compatible
+Plugin Note=Needs accurate depth buffer or something.
 Cheat0=D1381BFC 802C,80381BEF 0000 //Pass 1st Level and Controller Fix
 Cheat1=D11E3744 2881,811E3744 2001,D11E3746 0098,811E3746 0001 //Make Picture selectable
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
@@ -4384,6 +4376,7 @@ CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
 Good Name=Pokemon Snap (G)
 Internal Name=POKEMON SNAP
 Status=Compatible
+Plugin Note=Needs accurate depth buffer or something.
 Cheat0=D1381BDC 802C,80381BCF 0000 //Pass 1st Level and Controller Fix
 Cheat1=D11E3744 2881,811E3744 2001,D11E3746 0098,811E3746 0001 //Make Picture selectable
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
@@ -4393,6 +4386,7 @@ CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
 Good Name=Pokemon Snap (I)
 Internal Name=POKEMON SNAP
 Status=Compatible
+Plugin Note=Needs accurate depth buffer or something.
 Cheat0=D1381BFC 802C,80381BEF 0000 //Pass 1st Level and Controller Fix
 Cheat1=D11E3994 2881,811E3994 2001,D11E3996 0098,811E3996 0001 //Make Picture selectable
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
@@ -4402,99 +4396,67 @@ CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
 Good Name=Pokemon Snap (J) (V1.0)
 Internal Name=POKEMON SNAP
 Status=Compatible
-Cheat0=D136D22C 802A,8036D21F 0000 //Pass 1st Level and Controller Fix
-Cheat1=D11E1EC4 2881,811E1EC4 2001,D11E1EC6 0098,811E1EC6 0001 //Make Picture selectable
-CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
+Plugin Note=Needs accurate depth buffer or something.
 
 [E0044E9E-CD659D0D-C:4A]
 Good Name=Pokemon Snap (J) (V1.1)
 Internal Name=POKEMON SNAP
 Status=Compatible
-Cheat0=D136D22C 802A,8036D21F 0000 //Pass 1st Level and Controller Fix
-Cheat1=D11E1EC4 2881,811E1EC4 2001,D11E1EC6 0098,811E1EC6 0001 //Make Picture selectable
-CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
+Plugin Note=Needs accurate depth buffer or something.
 
 [817D286A-EF417416-C:53]
 Good Name=Pokemon Snap (S)
 Internal Name=POKEMON SNAP
 Status=Compatible
-Cheat0=D1381BFC 802C,80381BEF 0000 //Pass 1st Level and Controller Fix
-Cheat1=D11E38C4 2881,811E38C4 2001,D11E38C6 0098,811E38C6 0001 //Make Picture selectable
-CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
+Plugin Note=Needs accurate depth buffer or something.
 
 [CA12B547-71FA4EE4-C:45]
 Good Name=Pokemon Snap (U)
 Internal Name=POKEMON SNAP
 Status=Compatible
-Cheat0=D1382D1C 802C,80382D0F 0000 //Pass 1st Level and Controller Fix
-Cheat1=D11E3184 2881,811E3184 2001,D11E3186 0098,811E3186 0001 //Make Picture selectable
-CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
+Plugin Note=Needs accurate depth buffer or something.
 
 [39119872-07722E9F-C:45]
 Good Name=Pokemon Snap Station (U)
 Internal Name=POKEMON SNAP
 Status=Compatible
-Cheat0=D1382D1C 802C,80382D0F 0000 //Pass 1st Level and Controller Fix
-Cheat1=D11E30F4 2881,811E30F4 2001,D11E30F6 0098,811E30F6 0001 //Make Picture selectable
-CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
+Plugin Note=Needs accurate depth buffer or something.
 
 [84077275-57315B9C-C:50]
 Good Name=Pokemon Stadium (E) (V1.0)
 Internal Name=POKEMON STADIUM
 Status=Compatible
 Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [91C9E05D-AD3AAFB9-C:50]
 Good Name=Pokemon Stadium (E) (V1.1)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [A23553A3-42BF2D39-C:46]
 Good Name=Pokemon Stadium (F)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [42011E1B-E3552DB5-C:44]
 Good Name=Pokemon Stadium (G)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [A53FA82D-DAE2C15D-C:49]
 Good Name=Pokemon Stadium (I)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [665E8259-D098BD1D-C:4A]
 Good Name=Pokemon Stadium (J)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 Save Type=Sram
 
@@ -4502,115 +4464,78 @@ Save Type=Sram
 Good Name=Pokemon Stadium (S)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [90F5D9B3-9D0EDCF0-C:45]
 Good Name=Pokemon Stadium (U) (V1.0)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [1A122D43-C17DAF0F-C:45]
 Good Name=Pokemon Stadium - Kiosk (U) (V1.1)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [9C8FB2FA-9B84A09B-C:45]
 Good Name=Pokemon Stadium (U) (V1.2)
 Internal Name=POKEMON STADIUM
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [2952369C-B6E4C3A8-C:50]
 Good Name=Pokemon Stadium 2 (E)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [AC5AA5C7-A9B0CDC3-C:46]
 Good Name=Pokemon Stadium 2 (F)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [439B7E7E-C1A1495D-C:44]
 Good Name=Pokemon Stadium 2 (G)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [EFCEAF00-22094848-C:49]
 Good Name=Pokemon Stadium 2 (I)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [63775886-5FB80E7B-C:4A]
 Good Name=Pokemon Stadium 2 (J)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [D0A1FC5B-2FB8074B-C:53]
 Good Name=Pokemon Stadium 2 (S)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [03571182-892FD06D-C:45]
 Good Name=Pokemon Stadium 2 (U)
 Internal Name=POKEMON STADIUM 2
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [EE4FD7C2-9CF1D938-C:4A]
 Good Name=Pokemon Stadium Kin Gin (J)
 Internal Name=POKEMON STADIUM G&S
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
-Culling=1
-Emulate Clear=1
 Linking=Off
 
 [41380792-A167E045-C:45]
 Good Name=Polaris SnoCross (U)
 Internal Name=POLARISSNOCROSS
 Status=Compatible
-Plugin Note=[video] errors:various
 
 [D7A6DCFA-CCFEB6B7-C:4A]
 Good Name=Power League 64 (J)
@@ -4621,13 +4546,11 @@ Status=Compatible
 Good Name=Power Rangers - Lightspeed Rescue (E)
 Internal Name=POWER RANGERS
 Status=Compatible
-Plugin Note=[video] errors:2D; use Glide64 (see GameFAQ)
 
 [CF8957AD-96D57EA9-C:45]
 Good Name=Power Rangers - Lightspeed Rescue (U)
 Internal Name=POWER RANGERS
 Status=Compatible
-Plugin Note=[video] errors:2D; use Glide64 (see GameFAQ)
 
 [F3D27F54-C111ACF9-C:50]
 Good Name=Premier Manager 64 (E)
@@ -4650,7 +4573,6 @@ Counter Factor=1
 Good Name=Pro Mahjong Tsuwamono 64 - Jansou Battle ni Chousen (J)
 Internal Name=TSUWAMONO64
 Status=Issues (plugin)
-Plugin Note=[video] slow; errors:textures
 Counter Factor=1
 
 [94807E6B-60CC62E4-C:4A]
@@ -4663,7 +4585,6 @@ Plugin Note=[video] slow; ok in game?
 Good Name=Puyo Puyon Party (J)
 Internal Name=PUYOPUYO4
 Status=Compatible
-Plugin Note=[video] unsupported; use Glide64
 
 [C0DE0747-A2DF72D3-C:4A]
 Good Name=Puzzle Bobble 64 (J)
@@ -4686,20 +4607,19 @@ Screenhertz=50
 Good Name=Puzzle Master 64 by Michael Searl (PD)
 Internal Name=Puzzle Master 64
 Status=Compatible
-Plugin Note=[video] d3d clear mode: only per frame
 
 //================  Q  ================
 [16931D74-65DC6D34-C:50]
 Good Name=Quake 64 (E)
 Internal Name=Quake
 Status=Compatible
-Plugin Note=[video] depth problem, flicker; use Glide64 (see GameFAQ)
+Plugin Note=[video] Glide64 Underwater Issues.
 
 [9F5BF79C-D2FE08A0-C:45]
 Good Name=Quake 64 (U)
 Internal Name=Quake
 Status=Compatible
-Plugin Note=[video] depth problem, flicker; use Glide64 (see GameFAQ)
+Plugin Note=[video] Glide64 Underwater Issues.
 Culling=1
 
 [F4D89C08-3F34930D-C:0]
@@ -4711,7 +4631,7 @@ Status=Compatible
 Good Name=Quake II (E)
 Internal Name=QUAKE II
 Status=Compatible
-Plugin Note=[video] Glide64 Underwater Depth issues.
+Plugin Note=[video] Glide64 Underwater Issues.
 Counter Factor=1
 RDRAM Size=8
 
@@ -4719,24 +4639,20 @@ RDRAM Size=8
 Good Name=Quake II (U)
 Internal Name=QUAKE II
 Status=Compatible
-Plugin Note=[video] Glide64 Underwater Depth issues.
+Plugin Note=[video] Glide64 Underwater issues.
 Counter Factor=1
-Culling=1
 RDRAM Size=8
 
 [C8BB4DD9-CC5F430B-C:45]
 Good Name=Quest 64 (U)
 Internal Name=Quest 64
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
 
 //================  R  ================
 [2877AC2D-C3DC139A-C:44]
 Good Name=Racing Simulation 2 (G)
 Internal Name=Racing Simulation 2
 Status=Compatible
-Plugin Note=[video] errors:resolution issues
-Culling=1
 
 [67D21868-C5424061-C:50]
 Good Name=Rakuga Kids (E)
@@ -4752,7 +4668,6 @@ Status=Compatible
 Good Name=Rally '99 (J)
 Internal Name=Rally'99
 Status=Compatible
-Plugin Note=[video] errors:various (see GameFAQ)
 
 [73A88E3D-3AC5C571-C:45]
 Good Name=Rally Challenge 2000 (U)
@@ -4859,7 +4774,6 @@ Good Name=Resident Evil 2 (E) (M2)
 Internal Name=Resident Evil II
 Status=Compatible
 Core Note=(see GameFAQ)
-Plugin Note=[video] depth problem (use Glide64 and RDRAM Size=4 in main RDB, otherwise Glide64 will not render all the background in some scenes)
 32bit=No
 AudioResetOnLoad=Yes
 Counter Factor=1
@@ -4870,7 +4784,6 @@ Good Name=Resident Evil 2 (U) (V1.0)
 Internal Name=Resident Evil II
 Status=Compatible
 Core Note=(see GameFAQ)
-Plugin Note=[video] depth problem (use Glide64 and RDRAM Size=4 in main RDB, otherwise Glide64 will not render all the background in some scenes)
 32bit=No
 AudioResetOnLoad=Yes
 Counter Factor=1
@@ -4882,7 +4795,6 @@ Good Name=Resident Evil 2 (U) (V1.1)
 Internal Name=Resident Evil II
 Status=Compatible
 Core Note=(see GameFAQ)
-Plugin Note=[video] depth problem (use Glide64 and RDRAM Size=4 in main RDB, otherwise Glide64 will not render all the background in some scenes)
 32bit=No
 AudioResetOnLoad=Yes
 Counter Factor=1
@@ -4908,8 +4820,6 @@ Good Name=Roadsters Trophy (E) (M6)
 Internal Name=ROADSTERS TROPHY
 Status=Compatible
 Core Note=high system requirement
-Plugin Note=[video] missing:mirror; use Glide64
-Culling=1
 
 [0B6B4DDB-9671E682-C:45]
 Good Name=Roadsters Trophy (U) (M3)
@@ -4941,15 +4851,12 @@ Status=Compatible
 Good Name=Rocket - Robot on Wheels (M3)
 Internal Name=ROCKETROBOTONWHEELS
 Status=Compatible
-Clear Frame=2
-Culling=1
 
 [0C5EE085-A167DD3E-C:45]
 Good Name=Rocket - Robot on Wheels (U)
 Internal Name=ROCKETROBOTONWHEELS
 Status=Compatible
 Clear Frame=2
-Culling=1
 
 [D666593B-D7A25C07-C:4A]
 Good Name=Rockman Dash - Hagane no Boukenshin (J)
@@ -5190,11 +5097,7 @@ Status=Compatible
 Good Name=Sin & Punishment (J) [T]
 Internal Name=Sin and Punishment
 Status=Compatible
-Plugin Note=[video] errors:static in cutscenes
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
 
 [84FC04FF-B1253CE9-C:4A]
@@ -5208,21 +5111,16 @@ Culling=1
 Good Name=Snow Speeder (J)
 Internal Name=Snow Speeder
 Status=Compatible
-Plugin Note=[video] errors:menus; use 1.5.2 plugin
 
 [5FD7CDA0-D9BB51AD-C:50]
 Good Name=Snowboard Kids (E)
 Internal Name=SNOWBOARD KIDS
 Status=Compatible
-Clear Frame=1
-Culling=1
 
 [DBF4EA9D-333E82C0-C:45]
 Good Name=Snowboard Kids (U)
 Internal Name=SNOWBOARD KIDS
 Status=Compatible
-Clear Frame=1
-Culling=1
 
 [C2751D1A-F8C19BFF-C:50]
 Good Name=Snowboard Kids 2 (E)
@@ -5287,7 +5185,6 @@ Status=Compatible
 Good Name=South Park Rally (U)
 Internal Name=South Park Rally
 Status=Compatible
-Culling=1
 
 [37463412-EAC5388D-C:4A]
 Good Name=Space Dynamites (J)
@@ -5307,7 +5204,6 @@ Good Name=Space Station Silicon Valley (E) (M7)
 Internal Name=Silicon Valley
 Status=Compatible
 Plugin Note=[video] errors:cutscenes
-Culling=1
 RDRAM Size=8
 
 [BFE23884-EF48EAAF-C:4A]
@@ -5322,7 +5218,6 @@ Good Name=Space Station Silicon Valley (U)
 Internal Name=Silicon Valley
 Status=Compatible
 Plugin Note=[video] errors:cutscenes
-Culling=1
 RDRAM Size=8
 
 [A60ED171-3D85D06E-C:45]
@@ -5330,8 +5225,6 @@ Good Name=Spider-Man (U)
 Internal Name=SPIDERMAN
 Status=Compatible
 Plugin Note=[video] (see GameFAQ)
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 AudioResetOnLoad=Yes
 
@@ -5382,8 +5275,6 @@ Internal Name=STAR TWINS
 Status=Compatible
 Plugin Note=[video] (see GameFAQ)
 Counter Factor=1
-Culling=1
-Emulate Clear=1
 SMM-Cache=0
 SMM-FUNC=0
 SMM-PI DMA=0
@@ -5454,8 +5345,6 @@ Good Name=Star Wars - Shadows of the Empire (U) (V1.0)
 Internal Name=Shadow of the Empire
 Status=Compatible
 Plugin Note=[video] flicker; use Glide64
-Clear Frame=1
-Culling=1
 RDRAM Size=8
 
 [4147B091-63251060-C:45]
@@ -5525,8 +5414,6 @@ Internal Name=STAR WARS EP1 RACER
 Status=Compatible
 AudioResetOnLoad=Yes
 Counter Factor=1
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
 Save Type=16kbit Eeprom
 
@@ -5536,8 +5423,6 @@ Internal Name=STAR WARS EP1 RACER
 Status=Compatible
 AudioResetOnLoad=Yes
 Counter Factor=1
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
 Save Type=16kbit Eeprom
 
@@ -5547,8 +5432,6 @@ Internal Name=STAR WARS EP1 RACER
 Status=Compatible
 AudioResetOnLoad=Yes
 Counter Factor=1
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
 Save Type=16kbit Eeprom
 
@@ -5557,8 +5440,6 @@ Good Name=StarCraft 64 (E)
 Internal Name=STARCRAFT 64
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [FD6907F0-83CBC160-C:44]
@@ -5566,8 +5447,6 @@ Good Name=StarCraft 64 (G) (Beta)
 Internal Name=STARCRAFT 64
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [BC9B2CC3-4ED04DA5-C:37]
@@ -5575,8 +5454,6 @@ Good Name=StarCraft 64 (U) (Beta)
 Internal Name=Á2ÙE8y)±tU…y7àÕ]¹9
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [0684FBFB-5D3EA8A5-C:45]
@@ -5584,8 +5461,6 @@ Good Name=StarCraft 64 (U)
 Internal Name=STARCRAFT 64
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [D89E0E55-B17AA99A-C:50]
@@ -5645,7 +5520,6 @@ Good Name=Super Mario 64 (U)
 Internal Name=SUPER MARIO 64
 Status=Compatible
 Plugin Note=[video] missing:dissolve effect; use Glide64 (see GameFAQ)
-Culling=1
 
 [D6FBA4A8-6326AA2C-C:4A]
 Good Name=Super Mario 64 - Shindou Edition (J)
@@ -5658,7 +5532,6 @@ Good Name=Super Robot Spirits (J)
 Internal Name=SUPERROBOTSPIRITS
 Status=Issues (plugin)
 Plugin Note=[video] missing:menus
-Culling=1
 
 [1649D810-F73AD6D2-C:4A]
 Good Name=Super Robot Taisen 64 (J)
@@ -5688,7 +5561,6 @@ ViRefresh=2200
 Good Name=Super Smash Bros. (U)
 Internal Name=SMASH BROTHERS
 Status=Compatible
-Culling=1
 SMM-Cache=0
 SMM-FUNC=0
 SMM-TLB=0
@@ -5822,7 +5694,6 @@ Internal Name=ZELDA MAJORA'S MASK
 Status=Compatible
 Cote Note=(see GameFAQ)
 Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
 Emulate Clear=1
 RDRAM Size=8
 Self Texture=1
@@ -5833,10 +5704,7 @@ Internal Name=ZELDA MAJORA'S MASK
 Status=Compatible
 Cote Note=(see GameFAQ)
 Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [5354631C-03A2DEF0-C:45]
 Good Name=The Legend of Zelda - Majora's Mask (U)
@@ -5844,43 +5712,25 @@ Internal Name=ZELDA MAJORA'S MASK
 Status=Compatible
 Cote Note=(see GameFAQ)
 Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [6AECEC4F-F0924814-C:50]
 Good Name=The Legend of Zelda - Majora's Mask - Collector's Edition (E) (M4) (GC)
 Internal Name=ZELDA MAJORA'S MASK
 Status=Compatible
-Cote Note=(see GameFAQ)
-Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [B443EB08-4DB31193-C:45]
 Good Name=The Legend of Zelda - Majora's Mask - Collector's Edition (U) (GC)
 Internal Name=ZELDA MAJORA'S MASK
 Status=Compatible
-Cote Note=(see GameFAQ)
-Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [BF799345-39FF7A02-C:45]
 Good Name=The Legend of Zelda - Majora's Mask - Preview Demo (U)
 Internal Name=MAJORA'S MASK
 Status=Compatible
-Cote Note=(see GameFAQ)
-Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [09465AC3-F8CB501B-C:50]
 Good Name=The Legend of Zelda - Ocarina of Time (E) (GC)
@@ -5892,11 +5742,8 @@ Cheat0=801D8F8B 0002 //Subscreen Delay Fix
 Cheat1=D109A8E4 0320,8109A8E4 0000,D109A8E6 F809,8109A8E6 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [B044B569-373C1985-C:50]
 Good Name=The Legend of Zelda - Ocarina of Time (E) (M3) (V1.0)
@@ -5906,11 +5753,8 @@ Core Note=(see GameFAQ)
 Plugin Note=[video] (see GameFAQ)
 Cheat0=801D860B 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [B2055FBD-0BAB4E0C-C:50]
 Good Name=The Legend of Zelda - Ocarina of Time (E) (M3) (V1.1)
@@ -5920,11 +5764,8 @@ Core Note=(see GameFAQ)
 Plugin Note=[video] (see GameFAQ)
 Cheat0=801D864B 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [F3DD35BA-4152E075-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time (U) (GC)
@@ -5936,11 +5777,8 @@ Cheat0=801DB78B 0002 //Subscreen Delay Fix
 Cheat1=D109A814 0320,8109A814 0000,D109A816 F809,8109A816 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [EC7011B7-7616D72B-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time (U) (V1.0)
@@ -5952,14 +5790,11 @@ Plugin Note=[video] (see GameFAQ)
 Aspect Correction=1
 Cheat0=801DA5CB 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-Cache=0
 SMM-FUNC=0
 SMM-PI DMA=0
 SMM-Protect=1
 SMM-TLB=0
-Self Texture=1
 
 [D43DA81F-021E1E19-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time (U) (V1.1)
@@ -5970,14 +5805,11 @@ Plugin Note=[video] (see GameFAQ)
 32bit=No
 Cheat0=801DA78B 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-Cache=0
 SMM-FUNC=0
 SMM-PI DMA=0
 SMM-Protect=1
 SMM-TLB=0
-Self Texture=1
 
 [693BA2AE-B7F14E9F-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time (U) (V1.2)
@@ -5988,28 +5820,21 @@ Plugin Note=[video] (see GameFAQ)
 32bit=No
 Cheat0=801DAE8B 0002
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-Cache=0
 SMM-FUNC=0
 SMM-PI DMA=0
 SMM-Protect=1
 SMM-TLB=0
-Self Texture=1
 
 [1D4136F3-AF63EEA9-C:50]
 Good Name=The Legend of Zelda - Ocarina of Time - Master Quest (E) (GC)
 Internal Name=THE LEGEND OF ZELDA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Cheat0=801D8F4B 0002 //Subscreen Delay Fix
 Cheat1=D109A8C4 0320,8109A8C4 0000,D109A8C6 F809,8109A8C6 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
 Culling=1
-Emulate Clear=1
-Self Texture=1
 
 [27A3831D-B505A533-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time - Master Quest (E) [f1] (NTSC)
@@ -6021,11 +5846,8 @@ Cheat0=801D8F4B 0002 //Subscreen Delay Fix
 Cheat1=D109A8C4 0320,8109A8C4 0000,D109A8C6 F809,8109A8C6 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [1D4136F3-AF63EEA9-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time - Master Quest (E) [h1C]
@@ -6037,11 +5859,8 @@ Cheat0=801D8F4B 0002 //Subscreen Delay Fix
 Cheat1=D109A8C4 0320,8109A8C4 0000,D109A8C6 F809,8109A8C6 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [917D18F6-69BC5453-C:45]
 Good Name=The Legend of Zelda - Ocarina of Time - Master Quest (U) (Debug Version)
@@ -6058,16 +5877,12 @@ Good Name=The Legend of Zelda - Ocarina of Time - Master Quest (U) (GC)
 Internal Name=THE LEGEND OF ZELDA
 Status=Compatible
 Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Cheat0=801DB74B 0002 //Subscreen Delay Fix
 Cheat1=D109A7F4 0320,8109A7F4 0000,D109A7F6 F809,8109A7F6 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [E61CFF0A-CE1C0D71-C:50]
 Good Name=The New Tetris (E)
@@ -6146,20 +5961,12 @@ Plugin Note=[video] errors:background
 Good Name=Tonic Trouble (U) (V1.1)
 Internal Name=Tonic Trouble
 Status=Compatible
-Plugin Note=[video] errors:background
-Clear Frame=2
-Culling=1
-Emulate Clear=1
-Primary Frame Buffer=1
-Self Texture=1
 
 [9F8926A5-0587B409-C:50]
 Good Name=Tony Hawk's Pro Skater (E)
 Internal Name=TONY HAWK SKATEBOARD
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [204EC022-B119D185-C:45]
@@ -6181,8 +5988,6 @@ Good Name=Tony Hawk's Pro Skater 2 (E)
 Internal Name=THPS2
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [99150E18-1266E6A5-C:45]
@@ -6190,8 +5995,6 @@ Good Name=Tony Hawk's Pro Skater 2 (U)
 Internal Name=THPS2
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [1A7F70B5-00B7B9FD-C:45]
@@ -6199,22 +6002,19 @@ Good Name=Tony Hawk's Pro Skater 3 (U)
 Internal Name=THPS3
 Status=Compatible
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 [9A746EBF-2802EA99-C:0]
 Good Name=Toon Panic (J) (Beta)
 Internal Name=Toon Panic
 Status=Compatible
-Plugin Note=[video] errors:textures (see GameFAQ) //use Force Alpha Blending
 
 [5F3F49C6-0DC714B0-C:50]
 Good Name=Top Gear Hyper Bike (E)
 Internal Name=Top Gear Hyper Bike
 Status=Issues (plugin)
 Core Note=high system requirement
-Plugin Note=[video] errors:textures (see GameFAQ)
+Plugin Note=[video] errors:textures
 RDRAM Size=8
 
 [845B0269-57DE9502-C:4A]
@@ -6222,21 +6022,21 @@ Good Name=Top Gear Hyper Bike (J)
 Internal Name=Top Gear Hyper Bike
 Status=Issues (plugin)
 Core Note=high system requirement
-Plugin Note=[video] errors:textures (see GameFAQ)
+Plugin Note=[video] errors:textures
 
 [8ECC02F0-7F8BDE81-C:45]
 Good Name=Top Gear Hyper Bike (U)
 Internal Name=Top Gear Hyper Bike
 Status=Issues (plugin)
 Core Note=high system requirement
-Plugin Note=[video] errors:textures (see GameFAQ)
+Plugin Note=[video] errors:textures
 RDRAM Size=8
 
 [75FBDE20-A3189B31-C:0]
 Good Name=Top Gear Hyper Bike (Beta)
 Status=Issues (plugin)
 Core Note=high system requirement
-Plugin Note=[video] errors:textures (see GameFAQ)
+Plugin Note=[video] errors:textures
 
 [D09BA538-1C1A5489-C:50]
 Good Name=Top Gear Overdrive (E)
@@ -6244,7 +6044,6 @@ Internal Name=Top Gear Overdrive
 Status=Compatible
 Plugin Note=[video] (see GameFAQ)
 Counter Factor=1
-Direct3D8-Direct3DPipe=1
 RDRAM Size=8
 
 [0578F24F-9175BF17-C:4A]
@@ -6253,7 +6052,6 @@ Internal Name=Top Gear Overdrive
 Status=Compatible
 Plugin Note=[video] (see GameFAQ)
 Counter Factor=1
-Direct3D8-Direct3DPipe=1
 RDRAM Size=8
 
 [D741CD80-ACA9B912-C:45]
@@ -6262,7 +6060,6 @@ Internal Name=Top Gear Overdrive
 Status=Compatible
 Plugin Note=[video] (see GameFAQ)
 Counter Factor=1
-Direct3D8-Direct3DPipe=1
 RDRAM Size=8
 
 [7F43E701-536328D1-C:50]
@@ -6270,7 +6067,7 @@ Good Name=Top Gear Rally (E)
 Internal Name=TOP GEAR RALLY
 Status=Issues (mixed)
 Core Note=sound (see GameFAQ)
-Plugin Note=[video] errors:various; use Glide64
+Plugin Note=[video] errors:various
 32bit=No
 
 [0E596247-753D4B8B-C:4A]
@@ -6278,7 +6075,7 @@ Good Name=Top Gear Rally (J)
 Internal Name=TOP GEAR RALLY
 Status=Issues (mixed)
 Core Note=sound (see GameFAQ)
-Plugin Note=[video] errors:various; use Glide64
+Plugin Note=[video] errors:various
 32bit=No
 
 [62269B3D-FE11B1E8-C:45]
@@ -6286,7 +6083,7 @@ Good Name=Top Gear Rally (U)
 Internal Name=TOP GEAR RALLY
 Status=Issues (mixed)
 Core Note=sound (see GameFAQ)
-Plugin Note=[video] errors:various; use Glide64
+Plugin Note=[video] errors:various
 32bit=No
 
 [BEBAB677-51B0B5E4-C:50]
@@ -6294,8 +6091,6 @@ Good Name=Top Gear Rally 2 (E)
 Internal Name=TOP GEAR RALLY 2
 Status=Compatible
 Core Note=timing (see GameFAQ)
-Plugin Note=[video] errors:resolution; use 1.6 plugin
-Clear Frame=2
 
 [CFEF2CD6-C9E973E6-C:4A]
 Good Name=Top Gear Rally 2 (J)
@@ -6385,11 +6180,7 @@ Counter Factor=1
 Good Name=Tsumi to Batsu - Hoshi no Keishousha (J)
 Internal Name=TSUMI TO BATSU
 Status=Compatible
-Plugin Note=[video] errors:static in cutscenes
 AudioResetOnLoad=Yes
-Clear Frame=2
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
 
 [2F7009DD-FC3BAC53-C:50]
@@ -6572,8 +6363,6 @@ Good Name=Twisted Edge Extreme Snowboarding (U)
 Internal Name=TWISTED EDGE
 Status=Issues (core)
 Core Note=no sound
-Plugin Note=[video] errors:menu snowflakes; use Glide64
-Culling=1
 RDRAM Size=8
 
 //================  U  ================
@@ -6582,8 +6371,6 @@ Good Name=Ucchan Nanchan no Hono no Challenger - Denryuu Ira Ira Bou (J)
 Internal Name=ÃÞÝØ­³²×²×ÎÞ³
 Status=Compatible
 Core Note=unstable?
-Counter Factor=1
-Culling=1
 Delay SI=Yes
 
 //================  V  ================
@@ -6604,7 +6391,6 @@ Good Name=V-Rally Edition 99 (U)
 Internal Name=V-RALLY
 Status=Compatible
 Plugin Note=[video] errors:various; use Glide64
-Culling=1
 
 [151F79F4-8EEDC8E5-C:50]
 Good Name=Vigilante 8 (E)
@@ -6637,9 +6423,8 @@ RDRAM Size=8
 Good Name=Vigilante 8 (U)
 Internal Name=VIGILANTE 8
 Status=Issues (plugin)
-Plugin Note=[video] errors:various (see GameFAQ)
+Plugin Note=[video] errors:various
 Counter Factor=1
-Culling=1
 Linking=Off
 RDRAM Size=8
 
@@ -6714,55 +6499,38 @@ Save Type=4kbit Eeprom
 Good Name=Waialae Country Club - True Golf Classics (E) (M4) (V1.0)
 Internal Name=Waialae Country Club
 Status=Compatible
-Plugin Note=[video] framebuffer:shot (see GameFAQ)
-Culling=1
-Primary Frame Buffer=1
 
 [0C5057AD-046E126E-C:50]
 Good Name=Waialae Country Club - True Golf Classics (E) (M4) (V1.1)
 Internal Name=Waialae Country Club
 Status=Compatible
-Plugin Note=[video] framebuffer:shot (see GameFAQ)
-Culling=1
-Primary Frame Buffer=1
 
 [8066D58A-C3DECAC1-C:45]
 Good Name=Waialae Country Club - True Golf Classics (U) (V1.0)
 Internal Name=Waialae Country Club
 Status=Compatible
-Plugin Note=[video] framebuffer:shot (see GameFAQ)
-Culling=1
-Primary Frame Buffer=1
 
 [DD318CE2-B73798BA-C:45]
 Good Name=Waialae Country Club - True Golf Classics (U) (V1.1)
 Internal Name=Waialae Country Club
 Status=Compatible
-Plugin Note=[video] framebuffer:shot (see GameFAQ)
-Culling=1
-Primary Frame Buffer=1
 
 [D715CC70-271CF5D6-C:50]
 Good Name=War Gods (E)
 Internal Name=WAR GODS
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Counter Factor=1
 
 [F7FE28F6-C3F2ACC3-C:45]
 Good Name=War Gods (U)
 Internal Name=WAR GODS
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Counter Factor=1
 
 [650EFA96-30DDF9A7-C:50]
 Good Name=Wave Race 64 (E) (M2)
 Internal Name=WAVE RACE 64
 Status=Compatible
-Culling=1
 
 [5C9191D6-B30AC306-C:4A]
 Good Name=Wave Race 64 (J) (V1.0)
@@ -6824,7 +6592,6 @@ Status=Compatible
 Good Name=WCW Backstage Assault (U)
 Internal Name=WCW BACKSTAGE
 Status=Compatible
-Core Note=high system requirement
 
 [AA7B0658-9C96937B-C:50]
 Good Name=WCW Mayhem (E)
@@ -6845,44 +6612,32 @@ Good Name=WCW Nitro (U)
 Internal Name=NITRO64
 Status=Compatible
 Counter Factor=3
-Culling=1
 
 [8BDBAF68-345B4B36-C:50]
 Good Name=WCW vs. nWo - World Tour (E)
 Internal Name=WCWvs.NWO:World Tour
 Status=Compatible
-Core Note=high system requirement
-Plugin Note=[video] flicker; use Glide64
-Clear Frame=1
 
 [2C3E19BD-5113EE5E-C:45]
 Good Name=WCW vs. nWo - World Tour (U) (V1.0)
 Internal Name=WCWvs.NWO:World Tour
 Status=Compatible
-Core Note=high system requirement
-Plugin Note=[video] flicker; use Glide64
-Clear Frame=1
 
 [71BE60B9-1DDBFB3C-C:45]
 Good Name=WCW vs. nWo - World Tour (U) (V1.1)
 Internal Name=WCWvs.NWO:World Tour
 Status=Compatible
-Core Note=high system requirement
-Plugin Note=[video] flicker; use Glide64
-Clear Frame=1
 
 [68E8A875-0CE7A486-C:50]
 Good Name=WCW-nWo Revenge (E)
 Internal Name=WCW / nWo  REVENGE
 Status=Compatible
-Clear Frame=1
 Counter Factor=1
 
 [DEE596AB-AF3B7AE7-C:45]
 Good Name=WCW-nWo Revenge (U)
 Internal Name=WCW / nWo  REVENGE
 Status=Compatible
-Clear Frame=1
 Counter Factor=1
 
 [CEA8B54F-7F21D503-C:50]
@@ -6926,7 +6681,7 @@ RDRAM Size=8
 Good Name=WinBack (J) (V1.0)
 Internal Name=WIN BACK
 Status=Compatible
-Plugin Note=[video] grey square (see GameFAQ)
+Plugin Note=[video] HLE grey square
 
 [C52E0BC6-56BC6556-C:4A]
 Good Name=WinBack (J) (V1.1)
@@ -6938,26 +6693,21 @@ Plugin Note=[video] grey square (see GameFAQ)
 Good Name=WinBack - Covert Operations (U)
 Internal Name=WIN BACK
 Status=Compatible
-Plugin Note=[video] grey square (see GameFAQ)
+Plugin Note=[video] HLE grey square (see GameFAQ)
 
 [54310E7D-6B5430D8-C:50]
 Good Name=Wipeout 64 (E)
 Internal Name=Wipeout 64
 Status=Region issue (core)
-Core Note=use (U) ROM (see GameFAQ)
-Plugin Note=[video] access violation; use Glide64
+Core Note=use (U) ROM
 Counter Factor=1
-Direct3D8-Direct3DPipe=1
 RDRAM Size=8
 
 [132D2732-C70E9118-C:45]
 Good Name=Wipeout 64 (U)
 Internal Name=Wipeout 64
 Status=Compatible
-Plugin Note=[video] access violation; use Glide64
 Counter Factor=1
-Culling=1
-Direct3D8-Direct3DPipe=1
 RDRAM Size=8
 
 [E43C9765-05B1C1BE-C:4A]
@@ -6965,19 +6715,16 @@ Good Name=Wonder Project J2 - Corlo no Mori no Josette (J)
 Internal Name=WONDER PROJECT J2
 Status=Compatible
 Core Note=intro hang? skip to avoid
-Plugin Note=[video] errors:texture alignment
 
 [4F1E88F7-4A5A3F96-C:4A]
 Good Name=Wonder Project J2 [T]
 Status=Compatible
 Core Note=intro hang? skip to avoid
-Plugin Note=[video] errors:texture alignment
 
 [F9FC3090-FF014EC2-C:50]
 Good Name=World Cup 98 (E) (M8)
 Internal Name=World Cup 98
 Status=Compatible
-Plugin Note=[video] errors:various; use Glide64
 32bit=No
 Reg Cache=No
 
@@ -6985,7 +6732,6 @@ Reg Cache=No
 Good Name=World Cup 98 (U) (M8)
 Internal Name=World Cup 98
 Status=Compatible
-Plugin Note=[video] errors:various; use Glide64
 32bit=No
 Reg Cache=No
 
@@ -6994,7 +6740,7 @@ Good Name=World Driver Championship (E) (M5)
 Internal Name=WORLD DRIVER CHAMP
 Status=Issues (plugin)
 Core Note=high system requirement
-Plugin Note=[video] errors:various [audio] bad
+Plugin Note=[video] needs LLE [audio] bad
 32bit=No
 AudioResetOnLoad=Yes
 Fixed Audio=0 //Game doesn't like FAT currently.
@@ -7005,7 +6751,7 @@ Good Name=World Driver Championship (U)
 Internal Name=WORLD DRIVER CHAMP
 Status=Issues (plugin)
 Core Note=high system requirement
-Plugin Note=[video] errors:various [audio] bad
+Plugin Note=[video] needs LLE [audio] bad
 32bit=No
 AudioResetOnLoad=Yes
 Fixed Audio=0 //Game doesn't like FAT currently.
@@ -7071,7 +6817,6 @@ Culling=1
 Good Name=WWF No Mercy (U) (V1.1)
 Internal Name=WWF No Mercy
 Status=Compatible
-Culling=1
 
 [C71353BE-AA09A6EE-C:50]
 Good Name=WWF WrestleMania 2000 (E)
@@ -7093,14 +6838,11 @@ Status=Compatible
 Good Name=Xena Warrior Princess - Talisman of Fate (E)
 Internal Name=XENAWARRIORPRINCESS
 Status=Compatible
-Culling=1
 
 [0553AE9D-EAD8E0C1-C:45]
 Good Name=Xena Warrior Princess - Talisman of Fate (U)
 Internal Name=XENAWARRIORPRINCESS
 Status=Compatible
-Clear Frame=2
-Culling=1
 RDRAM Size=8
 
 //================  Y  ================
@@ -7108,30 +6850,28 @@ RDRAM Size=8
 Good Name=Yakouchuu II - Satsujin Kouro (J)
 Internal Name=YAKOUTYUU2
 Status=Compatible
-Plugin Note=[video] access violation; use Glide64 (see GameFAQ)
 Counter Factor=1
-Culling=1
 RDRAM Size=8
 
 [2DCFCA60-8354B147-C:4A]
 Good Name=Yoshi Story (J)
 Internal Name=YOSHI STORY
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
+Plugin Note=[video] Issues.
 Save Type=16kbit Eeprom
 
 [D3F97D49-6924135B-C:50]
 Good Name=Yoshi's Story (E) (M3)
 Internal Name=YOSHI STORY
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
+Plugin Note=[video] Issues.
 Save Type=16kbit Eeprom
 
 [2337D8E8-6B8E7CEC-C:45]
 Good Name=Yoshi's Story (U) (M2)
 Internal Name=YOSHI STORY
 Status=Compatible
-Plugin Note=[video] (see GameFAQ)
+Plugin Note=[video] Issues.
 Save Type=16kbit Eeprom
 
 [9FE6162D-E97E4037-C:4A]
@@ -7144,92 +6884,57 @@ Status=Compatible
 Good Name=Zelda no Densetsu - Mujura no Kamen (J) (V1.0)
 Internal Name=THE MASK OF MUJURA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [69AE0438-2C63F3F3-C:4A]
 Good Name=Zelda no Densetsu - Mujura no Kamen (J) (V1.1)
 Internal Name=THE MASK OF MUJURA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [8473D0C1-23120666-C:4A]
 Good Name=Zelda no Densetsu - Mujura no Kamen - Zelda Collection Version (J) (GC)
 Internal Name=ZELDA MAJORA'S MASK
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] errors:day transistion (see GameFAQ)
-Culling=1
-Emulate Clear=1
 RDRAM Size=8
-Self Texture=1
 
 [EC7011B7-7616D72B-C:4A]
 Good Name=Zelda no Densetsu - Toki no Ocarina (J) (V1.0)
 Internal Name=THE LEGEND OF ZELDA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Cheat0=801DA5CB 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [D43DA81F-021E1E19-C:4A]
 Good Name=Zelda no Densetsu - Toki no Ocarina (J) (V1.1)
 Internal Name=THE LEGEND OF ZELDA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Cheat0=801DA78B 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [693BA2AE-B7F14E9F-C:4A]
 Good Name=Zelda no Densetsu - Toki no Ocarina (J) (V1.2)
 Internal Name=THE LEGEND OF ZELDA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Cheat0=801DAE8B 0002 //Subscreen Delay Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [F7F52DB8-2195E636-C:4A]
 Good Name=Zelda no Densetsu - Toki no Ocarina - Zelda Collection Version (J) (GC)
 Internal Name=THE LEGEND OF ZELDA
 Status=Compatible
-Core Note=(see GameFAQ)
-Plugin Note=[video] (see GameFAQ)
 Cheat0=801DB78B 0002 //Subscreen Delay Fix
 Cheat1=D109A814 0320,8109A814 0000,D109A816 F809,8109A816 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [F611F4BA-C584135C-C:4A]
 Good Name=Zelda no Densetsu - Toki no Ocarina GC (J) (GC)
@@ -7241,11 +6946,8 @@ Cheat0=801DB78B 0002 //Subscreen Delay Fix
 Cheat1=D109A834 0320,8109A834 0000,D109A836 F809,8109A836 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [F43B45BA-2F0E9B6F-C:4A]
 Good Name=Zelda no Densetsu - Toki no Ocarina GC URA (J) (GC)
@@ -7257,11 +6959,8 @@ Cheat0=801DB78B 0002 //Subscreen Delay Fix
 Cheat1=D109A814 0320,8109A814 0000,D109A816 F809,8109A816 0000 //End Credits Fix
 CheatPlugin0=Jabo's Direct3D8,Glide64 For PJ64
 CheatPlugin1=Jabo's Direct3D8,Glide64 For PJ64
-Culling=1
-Emulate Clear=1
 SMM-PI DMA=0
 SMM-TLB=0
-Self Texture=1
 
 [1C010CCD-22D3B7FA-C:4A]
 Good Name=Zool - Majuu Tsukai Densetsu (J)
@@ -7844,16 +7543,13 @@ Status=Compatible
 [E86415A6-98395B53-C:50]
 Good Name=O.D.T (Or Die Trying) (E) (M5) (Unreleased Final)
 Internal Name=O.D.T
-Status=Needs video plugin
-Core Note=(see GameFAQ)
-Plugin Note=[video] unsupported
+Status=Compatible
 
 [2655BB70-667D9925-C:45]
 Good Name=O.D.T (Or Die Trying) (U) (M3) (Unreleased Final)
 Internal Name=O.D.T
 Status=Region issue (core)
 Core Note=hangs;use(E)ROM
-Plugin Note=[video] unsupported
 
 [7F2D025D-2B7DA4AD-C:0]
 Good Name=Oerjan Intro by Oerjan (POM '99) (PD)
