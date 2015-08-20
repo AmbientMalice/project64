@@ -1866,18 +1866,11 @@ Status=Compatible
 
 [F774EAEE-F0D8B13E-C:4A]
 Good Name=Fushigi no Dungeon - Fuurai no Shiren 2 - Oni Shuurai! Shiren Jou! (J)
-<<<<<<< HEAD
-Internal Name=F3 Ì³×²É¼ÚÝ2
-Status=Compatible
-32bit=No
-Counter Factor=1
-=======
 Internal Name=F3 ﾌｳﾗｲﾉｼﾚﾝ2
 Status=Issues (plugin)
 Plugin Note=[video] missing:graphics (see GameFAQ)
 Counter Factor=1
 32bit=No
->>>>>>> project64/master
 
 //================  G  ================
 [68FCF726-49658CBC-C:50]
