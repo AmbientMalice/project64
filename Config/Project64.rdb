@@ -3068,26 +3068,46 @@ Plugin Note=[video] Issues.
 Good Name=Mario Kart 64 (E) (V1.0)
 Internal Name=MARIOKART64
 Status=Compatible
+Cheat0=81001A38 2409,81001A3A 0002,81001A3C 2409,81001A3E 0002,81001C90 240A,81001C92 0002,81001C94 240A,81001C96 0002 //Multiplayer timing fix
+Plugin Note=[video] (see GameFAQ)
+Culling=1
+Primary Frame Buffer=1
 
 [2577C7D4-D18FAAAE-C:50]
 Good Name=Mario Kart 64 (E) (V1.1)
 Internal Name=MARIOKART64
 Status=Compatible
+Cheat0=81001A38 2409,81001A3A 0002,81001A3C 2409,81001A3E 0002,81001C90 240A,81001C92 0002,81001C94 240A,81001C96 0002 //Multiplayer timing fix
+Plugin Note=[video] (see GameFAQ)
+Culling=1
+Primary Frame Buffer=1
 
 [6BFF4758-E5FF5D5E-C:4A]
 Good Name=Mario Kart 64 (J) (V1.0)
 Internal Name=MARIOKART64
 Status=Compatible
+Cheat0=81001A38 2409,81001A3A 0002,81001A3C 2409,81001A3E 0002,81001C90 240A,81001C92 0002,81001C94 240A,81001C96 0002 //Multiplayer timing fix
+Plugin Note=[video] (see GameFAQ)
+Culling=1
+Primary Frame Buffer=1
 
 [C9C3A987-5810344C-C:4A]
 Good Name=Mario Kart 64 (J) (V1.1)
 Internal Name=MARIOKART64
 Status=Compatible
+Cheat0=81001A38 2409,81001A3A 0002,81001A3C 2409,81001A3E 0002,81001C90 240A,81001C92 0002,81001C94 240A,81001C96 0002 //Multiplayer timing fix
+Plugin Note=[video] (see GameFAQ)
+Culling=1
+Primary Frame Buffer=1
 
 [3E5055B6-2E92DA52-C:45]
 Good Name=Mario Kart 64 (U)
 Internal Name=MARIOKART64
 Status=Compatible
+Cheat0=81001A38 2409,81001A3A 0002,81001A3C 2409,81001A3E 0002,81001C90 240A,81001C92 0002,81001C94 240A,81001C96 0002 //Multiplayer timing fix
+Plugin Note=[video] (see GameFAQ)
+Culling=1
+Primary Frame Buffer=1
 
 [9A9890AC-F0C313DF-C:4A]
 Good Name=Mario no Photopi (J)
