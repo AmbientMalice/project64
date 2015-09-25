@@ -1,6 +1,11 @@
 ﻿// ============ RDB for PJ64 v2.2. GoodN64 v321 =====================================
+<<<<<<< HEAD
 // PJ64U v2.2 RDB
 // Since this RDB is totally different to official PJ64, I have to maintain it manually because every pull request causes a conflict and I'm stupid.
+=======
+// PJ64 v2.2 Official RDB
+// Not for use with PJ64 v1.6 or previous
+>>>>>>> 312124eb90c3ac2c41ddcc1e94eef5d2a6bcc9c2
 //---- START OF RDB FILE HEADER ---------------------------------------------------------
 
 [Meta]
@@ -1218,6 +1223,10 @@ Good Name=Derby Stallion 64 (J)
 Internal Name=DERBYSTALLION 64
 Save Type=FlashRam
 Status=Compatible
+<<<<<<< HEAD
+=======
+AiCountPerBytes=200
+>>>>>>> 312124eb90c3ac2c41ddcc1e94eef5d2a6bcc9c2
 
 [96BA4EFB-C9988E4E-C:0]
 Good Name=Derby Stallion 64 (J) (Beta)

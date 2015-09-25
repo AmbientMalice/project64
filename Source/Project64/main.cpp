@@ -178,7 +178,23 @@ const char * AppName ( void )
 	return Name.c_str();
 }
 
-int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpszArgs*/, int /*nWinMode*/) 
+#ifndef WINDOWS_UI
+int main(int argc, char* argv[])
+{
+    while (argc > 0)
+    {
+        puts(argv[--argc]);
+    }
+    putchar('\n');
+
+    fprintf(
+        stderr,
+        "Cross-platform (graphical/terminal?) UI not yet implemented.\n"
+    );
+    return 0;
+}
+#else
+int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpszArgs*/, int /*nWinMode*/)
 {
 	FixDirectories();
 
@@ -280,3 +296,4 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 	CloseTrace();
 	return true;
 }
+#endif
