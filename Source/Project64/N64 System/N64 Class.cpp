@@ -17,33 +17,33 @@
 
 CN64System::CN64System ( CPlugins * Plugins, bool SavesReadOnly ) :
 	CSystemEvents(this, Plugins),
+	m_Cheats(NULL),
+	m_EndEmulation(false),
+	m_SaveUsing((SAVE_CHIP_TYPE)g_Settings->LoadDword(Game_SaveChip)),
+	m_Plugins(Plugins),
+	m_SyncCPU(NULL),
 	m_SyncPlugins(NULL),
 	m_SyncWindow(NULL),
-	m_Reg(this,this),
 	m_MMU_VM(this,SavesReadOnly),
 	m_TLB(this),
+	m_Reg(this,this),
 	m_FPS(g_Notify),
-	m_Plugins(Plugins),
-	m_Cheats(NULL),
-	m_SyncCPU(NULL),
 	m_Recomp(NULL),
 	m_InReset(false),
-	m_EndEmulation(false),
-	m_bCleanFrameBox(true),
-	m_bInitialized(false),
 	m_NextTimer(0),
 	m_SystemTimer(m_NextTimer),
+	m_bCleanFrameBox(true),
+	m_bInitialized(false),
+	m_RspBroke(true),
 	m_DMAUsed(false),
-	m_CPU_Handle(NULL),
-	m_CPU_ThreadID(0),
 	m_TestTimer(false),
 	m_NextInstruction(0),
 	m_JumpToLocation(0),
 	m_TLBLoadAddress(0),
 	m_TLBStoreAddress(0),
-	m_SaveUsing((SAVE_CHIP_TYPE)g_Settings->LoadDword(Game_SaveChip)),
-	m_RspBroke(true),
-	m_SyncCount(0)
+	m_SyncCount(0),
+	m_CPU_Handle(NULL),
+	m_CPU_ThreadID(0)
 {
 	DWORD gameHertz = g_Settings->LoadDword(Game_ScreenHertz);
 	if (gameHertz == 0)
@@ -208,6 +208,9 @@ bool CN64System::RunFileImage ( const char * FileLoc )
 		g_Notify->AddRecentRom(FileLoc);
         g_Notify->SetWindowCaption(g_Settings->LoadString(Game_GoodName).ToUTF16().c_str());
 
+		g_Settings->SaveBool(GameRunning_LoadingInProgress, false);
+		g_Notify->RefreshMenu();
+
 		if (g_Settings->LoadDword(Setting_AutoStart) != 0)
 		{
 			g_BaseSystem = new CN64System(g_Plugins,false);
@@ -216,8 +219,6 @@ bool CN64System::RunFileImage ( const char * FileLoc )
 				g_BaseSystem->StartEmulation(true);
 			}
 		}
-		g_Settings->SaveBool(GameRunning_LoadingInProgress,false);
-		g_Notify->RefreshMenu();
 	}
 	else
 	{
@@ -308,11 +309,15 @@ void  CN64System::StartEmulation2   ( bool NewThread )
 		{
 			g_Notify->DisplayMessage(5,L"Copy Plugins");
 			g_Plugins->CopyPlugins(g_Settings->LoadString(Directory_PluginSync));
+#if defined(WINDOWS_UI)
 			m_SyncWindow = new CMainGui(false);
 			m_SyncPlugins = new CPlugins( g_Settings->LoadString(Directory_PluginSync) ); 
 			m_SyncPlugins->SetRenderWindows(m_SyncWindow,m_SyncWindow);
 
 			m_SyncCPU = new CN64System(m_SyncPlugins, true);
+#else
+			g_Notify -> BreakPoint(__FILEW__, __LINE__);
+#endif
 		}
 
 		if (CpuType == CPU_Recompiler || CpuType == CPU_SyncCores)
@@ -556,6 +561,9 @@ void CN64System::PluginReset()
 	{
 		m_SyncCPU->m_Plugins->RomOpened();
 	}
+#ifndef _WIN64
+	_controlfp(_PC_53, _MCW_PC);
+#endif
 }
 
 void CN64System::Reset (bool bInitReg, bool ClearMenory) 
@@ -563,7 +571,11 @@ void CN64System::Reset (bool bInitReg, bool ClearMenory)
 	RefreshGameSettings();
 	m_Audio.Reset();
 	m_MMU_VM.Reset(ClearMenory);
+#if defined(WINDOWS_UI)
 	Debug_Reset();
+#else
+	g_Notify -> BreakPoint(__FILEW__, __LINE__);
+#endif
 	Mempak::Close();
 
 	m_CyclesToSkip = 0;
@@ -900,11 +912,17 @@ void CN64System::ExecuteCPU()
 	{
 		m_SyncCPU->m_Plugins->RomOpened();
 	}
+#ifndef _WIN64
+	_controlfp(_PC_53, _MCW_PC);
+#endif
 
 	switch ((CPU_TYPE)g_Settings->LoadDword(Game_CpuType))
 	{
+// Currently the compiler is 32-bit only.  We might have to ignore that RDB setting for now.
+#ifndef _WIN64
 	case CPU_Recompiler: ExecuteRecompiler(); break;
 	case CPU_SyncCores:  ExecuteSyncCPU();    break;
+#endif
 	default:             ExecuteInterpret();  break;
 	}
 	g_Settings->SaveBool(GameRunning_CPU_Running,(DWORD)false);
@@ -1378,7 +1396,6 @@ void CN64System::DumpSyncErrors (CN64System * SecondCPU)
 
 	g_Notify->DisplayError(L"Sync Error");
 	g_Notify->BreakPoint(__FILEW__,__LINE__);
-//	AddEvent(CloseCPU);
 }
 
 bool CN64System::SaveState()
@@ -2066,5 +2083,9 @@ void CN64System::TLB_Unmaped ( DWORD VAddr, DWORD Len )
 
 void CN64System::TLB_Changed()
 {
+#if defined(WINDOWS_UI)
 	Debug_RefreshTLBWindow();
+#else
+	g_Notify -> BreakPoint(__FILEW__, __LINE__);
+#endif
 }

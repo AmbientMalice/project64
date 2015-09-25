@@ -10,6 +10,8 @@
 ****************************************************************************/
 #pragma once
 
+extern unsigned long swap32by8(unsigned long word);
+
 class CMipsMemoryVM :
 	public CMipsMemory,
 	public CTransVaddr,
@@ -65,7 +67,6 @@ public:
 
 	//Compilation Functions
 	void ResetMemoryStack();
-	void ResetTLB();
 
 	void Compile_LB();
 	void Compile_LBU();
