@@ -1,25 +1,60 @@
 ' On Error Resume Next
 
-if WScript.Arguments.Count < 3 then
+if WScript.Arguments.Count < 4 then
     WScript.StdOut.WriteLine "Missing parameters"
-    WScript.StdOut.WriteLine "[password] [file to upload] [BuildUrl]"
+    WScript.StdOut.WriteLine "[password] [file to upload] [BuildUrl] [Posttitle]"
 	WScript.Quit
 end if
 
-Set IE = WScript.CreateObject("InternetExplorer.Application", "IE_")
+Set IE = CreateIeWindow()
+WScript.StdOut.WriteLine IE.HWND
 IE.Visible = True
 
 Login IE
 PostThread IE
+IE.Quit
+
+function CreateIeWindow ()
+	on error resume next
+
+	Set CreateIeWindow = nothing
+	For count = 0 to 100
+		WScript.StdOut.WriteLine count & ": Trying to create Internet Explorer"
+		Set IE = WScript.CreateObject("InternetExplorer.Application", "IE_")
+		if not IE is nothing then
+			WScript.StdOut.WriteLine count & ": Created Internet Explorer"
+			WScript.StdOut.WriteLine IE.HWND
+			IE.Visible = True
+
+			WScript.StdOut.WriteLine IE.HWND
+			Set CreateIeWindow = IE
+			exit for
+		end if
+		WScript.StdOut.WriteLine count & ": Not created"
+		WScript.Sleep 100
+		WScript.StdOut.WriteLine count & ": Should loop"
+	Next
+	if CreateIeWindow is nothing then
+		WScript.StdOut.WriteLine "Failed to create InternetExplorer.Application"
+		WScript.Quit
+	end if
+End Function
 
 Sub Wait(IE)
 	Dim complete
 	complete = False
 
+	WScript.StdOut.WriteLine "Waiting for IE"
+
 	For count = 0 to 1000
+		WScript.StdOut.WriteLine "before sleep"
 		WScript.Sleep 100
-		WScript.StdOut.WriteLine count & ": IE.ReadyState: " & IE.ReadyState
-		if IE.ReadyState >= 4 then
+		WScript.StdOut.WriteLine "after sleep"
+		if IE is nothing then
+			WScript.StdOut.WriteLine "after sleep"
+		end if
+		WScript.StdOut.WriteLine count & ": IE.readyState: " & IE.readyState
+		if IE.readyState >= 4 then
 			WScript.StdOut.WriteLine count & ": IE.Busy: " & IE.Busy
 			if not IE.Busy then
 				WScript.StdOut.WriteLine count & ": IE.document.readyState: " & IE.document.readyState
@@ -30,28 +65,70 @@ Sub Wait(IE)
 			end if
 		end if
 	Next
-	
+
 	if  not complete then
 		WScript.StdOut.WriteLine "Failed to wait for IE"
 		WScript.Quit
 	end if
+	WScript.StdOut.WriteLine "IE Done"
 End Sub
 
+Function FindIeWindow(ieID)
+	on error resume next
+	set IE = nothing
+
+	Set Shell = CreateObject("Shell.Application")
+	For i = 0 to Shell.Windows.Count -1 
+		set Win  = Shell.Windows.Item(i)
+		WScript.StdOut.WriteLine i & ": " & TypeName(win.Document)
+
+		If TypeName(win.Document) = "HTMLDocument" Then					
+			WScript.StdOut.WriteLine "uniqueID: @" & win.HWND & "@" & ieID & "@"
+			if win.HWND = ieID then
+				WScript.StdOut.WriteLine "matched"
+				set IE = win
+			end if
+		End If
+		if not IE is nothing then
+			exit for
+		end if
+	Next
+	set FindIeWindow = IE
+	
+	if IE is nothing then
+		WScript.StdOut.WriteLine "Failed to find navigating window"
+	else
+		WScript.StdOut.WriteLine "HWND : " & IE.HWND 
+	end if
+End Function
+
 Sub Navigate(IE, url)
- 	WScript.StdOut.WriteLine "Navigating to: " & url
+	dim ieId
+	ieID = IE.HWND
+ 	WScript.StdOut.WriteLine "Navigating (" & IE.HWND  & ") to: " & url
 	IE.Navigate url
+	WScript.Sleep 100
+	' set IE = FindIeWindow(ieID)
 	Wait IE
 End Sub
 
 Sub ValidateLoggedIn(IE)
-	WScript.StdOut.WriteLine "validate login success"
+	WScript.StdOut.WriteLine "ValidateLoggedIn - 1"
+	WScript.StdOut.WriteLine "ValidateLoggedIn start"
+	WScript.StdOut.WriteLine "ValidateLoggedIn - 2"
 	Navigate IE, "http://forum.pj64-emu.com/"
+	WScript.StdOut.WriteLine "ValidateLoggedIn - 3"
 	Wait IE
+	WScript.StdOut.WriteLine "ValidateLoggedIn - 4"
 
 	Dim LoggedIn
 	LoggedIn = False
+	WScript.StdOut.WriteLine "ValidateLoggedIn - 5"
 	Set NodeList = IE.document.getElementsByTagName("a") 
+	WScript.StdOut.WriteLine "ValidateLoggedIn - 6"
+	WScript.StdOut.WriteLine "Got Node list"
 	For Each Elem In NodeList
+		WScript.StdOut.WriteLine Elem.href
 		if lcase(Mid(Elem.href,1,39)) = "http://forum.pj64-emu.com/member.php?u=" then
 			if lcase(Mid(Elem.parentElement.innerHTML,1,11))  = "welcome, <a" then
 				if lcase(Elem.innerHTML)  = "buildbot" then	
@@ -67,9 +144,12 @@ Sub ValidateLoggedIn(IE)
 		WScript.StdOut.WriteLine "Failed to login"
 		WScript.Quit
 	end if
+ 	WScript.StdOut.WriteLine "ValidateLoggedIn Done"
 End Sub
 
 Sub Login(IE)
+	'On Error resume next
+
 	Set IE2 = WScript.CreateObject("InternetExplorer.Application", "IE_")
 	IE2.Visible = True
  	WScript.StdOut.WriteLine "Login start"
@@ -78,10 +158,12 @@ Sub Login(IE)
 	set navbar_username = IE2.document.getelementbyid("navbar_username")
 	set navbar_password = IE2.document.getelementbyid("navbar_password")
 	if navbar_username is nothing then
+		WScript.StdOut.WriteLine "Failed to find login form, checking if already logged in"
 		ValidateLoggedIn IE	
 		exit sub
 	end if
 
+ 	WScript.StdOut.WriteLine "Found login form"
 	navbar_username.value = "buildbot"
 	navbar_password.value = WScript.Arguments(0)
 	navbar_username.form.submit
@@ -89,9 +171,10 @@ Sub Login(IE)
 	Dim FoundIt
 	FoundIt = False
 
+ 	WScript.StdOut.WriteLine "Looking for redirect"
 	For count = 0 to 100
-		WScript.StdOut.WriteLine count
 		Set NodeList = IE2.document.getElementsByTagName("a") 
+		WScript.StdOut.WriteLine count & ": Found " & NodeList.length & " a tags"
 		For Each Elem In NodeList
 			if StrComp(Elem.href, "http://forum.pj64-emu.com/", vbTextCompare) = 0 then
 				if StrComp(Elem.innerHTML, "Click here if your browser does not automatically redirect you.", vbTextCompare) = 0 then
@@ -103,17 +186,18 @@ Sub Login(IE)
 		if FoundIt = True then
 			Exit For
 		end if
+		WScript.Sleep 100
 	Next	
 
 	if FoundIt = false then
 		WScript.StdOut.WriteLine "Failed to find redirect"
 		WScript.Quit
 	end if
-	
+
 	WScript.StdOut.WriteLine "found redirect"
 	Navigate IE, "http://forum.pj64-emu.com/"
 	Wait IE
-	
+
 	WScript.StdOut.WriteLine "Quitting IE2"
 	IE2.Quit
 	ValidateLoggedIn IE	
@@ -123,17 +207,26 @@ End Sub
 
 Sub PostThread(IE)
 	WScript.StdOut.WriteLine "PostThread start"
-    Navigate IE, "http://forum.pj64-emu.com/newthread.php?do=newthread&f=8"
+    Navigate IE, "http://forum.pj64-emu.com/newthread.php?do=newthread&f=10"
     Wait IE
-	
-	Set NodeList = IE.document.getElementsByTagName("input") 
+
 	Dim submitButton
-	For Each Elem In NodeList
-		if lcase(Elem.className) = "button" and lcase(Elem.value) = "submit new thread" then
-			WScript.StdOut.WriteLine "found submit button"
-			set submitButton = Elem
+	For count = 0 to 100
+        WScript.StdOut.WriteLine count & ": looking for submit button"
+		set submitButton = nothing
+		Set NodeList = IE.document.getElementsByTagName("input") 
+		For Each Elem In NodeList
+			WScript.StdOut.WriteLine count & ": " & lcase(Elem.className)
+			if lcase(Elem.className) = "button" and lcase(Elem.value) = "submit new thread" then
+				WScript.StdOut.WriteLine count & ": found submit button"
+				set submitButton = Elem
+				exit for
+			end if
+		Next
+		if not submitButton is nothing then
 			exit for
 		end if
+		WScript.Sleep 300
 	Next
 	
 	if submitButton is nothing then
@@ -141,21 +234,21 @@ Sub PostThread(IE)
         WScript.Quit
 	end if
 
-	SetPostDetails IE, WScript.Arguments(2)
-	
-	set manage_attachments_button = ie.document.getelementbyid("manage_attachments_button")
-	if not manage_attachments_button is nothing then
-		manage_attachments_button.click
-		Wait IE
-		WScript.Sleep 2000
-		UploadFile WScript.Arguments(1)
-	end if
-	
+	dim ieId
+	ieID = IE.HWND
+
+	SetPostDetails IE, WScript.Arguments(2), WScript.Arguments(3)
+	UploadFile WScript.Arguments(1)	
+
+	WScript.StdOut.WriteLine "submitting"
 	submitButton.click
+	WScript.Sleep 100
+	' set IE = FindIeWindow(ieID)
 	Wait IE
+	WScript.StdOut.WriteLine "PostThread Finished"
 End Sub
 
-Sub SetPostDetails(IE, BuildUrl)
+Sub SetPostDetails(IE, BuildUrl, PostTitle)
 	WScript.StdOut.WriteLine "Posting Details"
     Dim oReq
     Set oReq = CreateObject("MSXML2.XMLHTTP")
@@ -171,14 +264,11 @@ Sub SetPostDetails(IE, BuildUrl)
     Set xmlDoc = oReq.responseXML
     Set objLst = xmlDoc.getElementsByTagName("freeStyleBuild")
 
-    Dim PostTitle, PostContent
+    Dim PostContent
     For each elem in objLst
         set childNodes = elem.childNodes
         for each node in childNodes
-            if lcase(node.nodeName)="fulldisplayname" then
-                PostTitle = node.text
-            end if
-            if lcase(node.nodeName)="changeset" then
+             if lcase(node.nodeName)="changeset" then
                 for each item in node.childNodes
                     dim commitId, comment
 
@@ -210,7 +300,7 @@ Sub SetPostDetails(IE, BuildUrl)
 
     WScript.StdOut.WriteLine "PostTitle = """ & PostTitle & """"
     WScript.StdOut.WriteLine "PostContent = """ & PostContent & """"
-	
+
 	Dim SetTitle
 	SetTitle = False
 	Set NodeList = IE.document.getElementsByTagName("input") 
@@ -226,7 +316,7 @@ Sub SetPostDetails(IE, BuildUrl)
 		WScript.StdOut.WriteLine "failed to set post title"
 		WScript.Quit
 	end if
-	
+
 	Dim SetMessage
 	SetMessage = False
 	Set NodeList = IE.document.getElementsByTagName("textarea") 
@@ -243,87 +333,129 @@ Sub SetPostDetails(IE, BuildUrl)
 		WScript.StdOut.WriteLine "failed to set post message"
 		WScript.Quit
 	end if
-	
+
 end sub
 
 sub UploadFile(FileToUpload)
 	WScript.StdOut.WriteLine "UploadFile start"
 
-	On Error resume next
-	set IE = Nothing
-
-	Set Shell = CreateObject("Shell.Application")
-	For i = 0 to Shell.Windows.Count -1 
-		set Win  = Shell.Windows.Item(i)
-		If TypeName(win.Document) = "HTMLDocument" Then
-			if StrComp(win.Document.title, "Manage Attachments - Project64 Forums", vbTextCompare) = 0 then
-				set IE = win
-			end if
-		End If
-
-		if not IE is nothing then
-			exit for
-		end if
-	Next
-	if IE is nothing then
-		WScript.StdOut.WriteLine "Failed to find upload window"
-		exit sub
-	end if
-	
-	WScript.StdOut.WriteLine  "Found window"
-	Set objShell = CreateObject("Wscript.Shell")
-	WScript.StdOut.WriteLine  "activate: " & win.Document.title & " - " & IE.name
-	Dim activated
-	For count = 0 to 100
-		activated = objShell.AppActivate(win.Document.title & " - " & IE.name, True)
-		if activated then
-		    exit for
-		end if
-		WScript.StdOut.WriteLine count & ": " & activated
-		WScript.Sleep 100
-	Next
-	
-	if not activated then
-		WScript.StdOut.WriteLine "Failed to activate window"
+	dim filePos
+	filePos = InStrRev(FileToUpload, "\")
+	if filePos = 0 then 
+		WScript.StdOut.WriteLine "failed to find directory seperator in " & FileToUpload
 		WScript.Quit
 	end if
-			
-	Set NodeList = IE.document.getElementsByTagName("input") 
-	For Each Elem In NodeList
-		if StrComp(Elem.name, "attachment[]", vbTextCompare) = 0 then
-			Elem.focus()
-			objShell.SendKeys " "
-			
-			WScript.StdOut.WriteLine  "Uploading: " & FileToUpload
-			Wscript.Sleep 1000
-			a=Split(FileToUpload,"\")
-			b=ubound(a)
-			For i=0 to b
-				objShell.SendKeys a(i)
-				if i < b then
-					objShell.SendKeys "\"
-				else
-					objShell.SendKeys "{ENTER}"
-				end if
-  				Wscript.Sleep 100
-			Next
-	 		exit for
-		end if
-	Next
 
-	For Each Elem In NodeList
-		if StrComp(Elem.name, "upload", vbTextCompare) = 0 then
-			Elem.click
-			Wait IE
-			exit for
+	dim fileName
+	fileName = Mid(FileToUpload, filePos + 1, len(FileToUpload))
+	WScript.StdOut.WriteLine fileName
+
+	extPos = InStrRev(fileName, ".")
+	if extPos = 0 then 
+		WScript.StdOut.WriteLine "failed to find file extension in " & fileName
+		WScript.Quit
+	end if
+	extension = Mid(fileName, extPos, len(fileName))
+	if lcase(extension) <> ".zip" then 
+		WScript.StdOut.WriteLine "not a zip file: " & fileName
+		WScript.Quit
+	end if	
+
+
+	set manage_attachments_button = ie.document.getelementbyid("manage_attachments_button")
+	if manage_attachments_button is nothing then
+		WScript.StdOut.WriteLine "failed to find manage_attachments_button"
+		WScript.Quit
+	end if
+
+	WScript.StdOut.WriteLine "InStr(1, lcase(manage_attachments_button.onclick), ""vb_attachments"") = " & InStr(1, lcase(manage_attachments_button.onclick), "vb_attachments")
+	dim startPos, endPos
+	startPos = InStr(1, lcase(manage_attachments_button.onclick), "vb_attachments")
+	if startPos = 0 then 
+		WScript.StdOut.WriteLine "failed to find vb_attachments in " & manage_attachments_button.onclick
+		WScript.Quit
+	end if
+	startPos = InStr(startPos, lcase(manage_attachments_button.onclick), "'")
+	if startPos = 0 then 
+		WScript.StdOut.WriteLine "failed to find first quote in " & manage_attachments_button.onclick
+		WScript.Quit
+	end if
+	startPos = startPos + 1
+	endPos = InStr(startPos,manage_attachments_button.onclick, "'")
+	if endPos = 0 then 
+		WScript.StdOut.WriteLine "failed to find second quote in " & manage_attachments_button.onclick
+		WScript.Quit
+	end if
+
+	Set IE2 = WScript.CreateObject("InternetExplorer.Application", "IE_")
+	IE2.Visible = True
+	Navigate IE2, "http://forum.pj64-emu.com/" & Mid(manage_attachments_button.onclick, startPos, endPos - startPos)
+	Wait IE2
+
+	Set FormList = IE2.document.getElementsByTagName("form") 
+	if FormList.length <> 1 or FormList(0).name <> "newattachment" then 
+		WScript.StdOut.WriteLine "failed to find attachement form"
+		WScript.Quit
+	end if
+
+	Set InputList = FormList(0).getElementsByTagName("input")
+	WScript.StdOut.WriteLine "InputList.length = " & InputList.length
+
+	dim PreFormData, PostFormData
+
+	For Each Input In InputList
+		if lcase(Input.type) = "hidden" then
+			PreFormData = PreFormData & "--AaB03x" & vbCrLf & "Content-Disposition: form-data; name=""" & Input.name & """" & vbCrLf & vbCrLf & Input.value& vbCrLf   
 		end if
-	Next
-	
+		WScript.StdOut.WriteLine "Input.type: " & Input.type & " Input.name: " & Input.name & " Input.value: " & Input.value
+	next
+	PreFormData = PreFormData & "--AaB03x" & vbCrLf & "Content-Disposition: form-data; name=""attachment[]""; filename=""" & fileName & """" & vbCrLf
+	PreFormData = PreFormData & "Content-Type: application/zip" & vbCrLf & vbCrLf
+	PostFormData = vbCrLf & "--AaB03x" & vbCrLf & "Content-Disposition: form-data; name=""upload""" & vbCrLf & vbCrLf & "Upload" & vbCrLf   
+	PostFormData = PostFormData & vbCrLf & vbCrLf & "--AaB03x--"& vbCrLf
+
+	WScript.StdOut.WriteLine  PreFormData & PostFormData
+
+	dim fileContents
+	fileContents = ReadBinaryFile(FileToUpload)
+
+	dim UploadUrl
+	UploadUrl = "http://forum.pj64-emu.com/" & FormList(0).action
+	IE2.Quit
+
+	Header = "Content-Type: multipart/form-data; boundary=AaB03x" & vbCrLf
+
+	Const adTypeBinary = 1
+
+	Dim DataToPOSTStream
+	Set DataToPOSTStream = CreateObject("ADODB.Stream")  
+
+	DataToPOSTStream.type=adTypeBinary
+	DataToPOSTStream.Open
+
+	DataToPOSTStream.Write = Stream_StringToBinary(PreFormData,"us-ascii")
+	DataToPOSTStream.Write = fileContents
+	DataToPOSTStream.Write = Stream_StringToBinary(PostFormData,"us-ascii")
+	DataToPOSTStream.Position = 0
+	DataToPOSTStream.Type = adTypeBinary
+	Dim DataToPOST
+	DataToPOST = DataToPOSTStream.Read
+
+	Set IE3 = CreateIeWindow()
+	IE3.Visible = 1
+	dim ieId
+	ieID = IE3.HWND
+	WScript.StdOut.WriteLine "Uploading form to: " & UploadUrl	
+	IE3.Navigate UploadUrl, Nothing, Nothing, DataToPOST, Header
+	WScript.Sleep 100
+	'set IE3 = FindIeWindow(ieID)
+	Wait IE3
+
 	Dim UploadDone
 	UploadDone = False
 	For count = 0 to 1000
 		WScript.StdOut.WriteLine count & ": Waiting for upload done"
-		Set NodeList = ie.document.getElementsByTagName("legend") 
+		Set NodeList = IE3.document.getElementsByTagName("legend") 
 		For Each Elem In NodeList
 			if (len(Elem.innerHTML) > 19) and lcase(Mid(Elem.innerHTML, 1, 19)) = "current attachments" then 
 				UploadDone = true
@@ -340,13 +472,45 @@ sub UploadFile(FileToUpload)
 		WScript.StdOut.WriteLine "Failed to upload file"
 		WScript.Quit
 	end if
+	IE3.Quit
 
-	Set NodeList = IE.document.getElementsByTagName("input") 
-	For Each Elem In NodeList
-		if lcase(Elem.value) = "close this window" then
-			Elem.click
-			exit for
-		end if
-	Next
+	WScript.StdOut.WriteLine "UploadFile Finished"
 end sub
 
+Function Stream_StringToBinary(Text, CharSet)
+  Const adTypeText = 2
+  Const adTypeBinary = 1
+
+  Dim BinaryStream
+  Set BinaryStream = CreateObject("ADODB.Stream")
+
+  BinaryStream.Type = adTypeText
+  BinaryStream.CharSet = CharSet
+
+  BinaryStream.Open
+  BinaryStream.WriteText Text
+
+  BinaryStream.Position = 0
+  BinaryStream.Type = adTypeBinary
+  Stream_StringToBinary = BinaryStream.Read
+
+  Set BinaryStream = Nothing
+End Function
+
+Function ReadBinaryFile(path)
+    Const adTypeText = 2
+    Const adTypeBinary = 1
+
+    dim inStream
+    dim myByte,myByteValue,myCharacter
+
+    set inStream=WScript.CreateObject("ADODB.Stream")
+
+    inStream.Open
+    inStream.type=1
+
+    inStream.LoadFromFile path 
+
+    ReadBinaryFile=inStream.Read()
+    inStream.Close
+End Function
